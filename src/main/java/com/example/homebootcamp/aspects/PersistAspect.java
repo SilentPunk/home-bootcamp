@@ -16,9 +16,12 @@ import java.util.UUID;
 @Component
 @Aspect
 public class PersistAspect {
+    private final IncomingRequestLogRepository incomingRequestLogRepository;
 
     @Autowired
-    private IncomingRequestLogRepository incomingRequestLogRepository;
+    public PersistAspect(IncomingRequestLogRepository incomingRequestLogRepository){
+        this.incomingRequestLogRepository = incomingRequestLogRepository;
+    }
 
     @Pointcut("@annotation(persistIncomingRequest)")
     public void beforeIncomingRequest(PersistIncomingRequest persistIncomingRequest){};
