@@ -1,5 +1,6 @@
 package com.example.homebootcamp.controllers;
 
+import com.example.homebootcamp.annotations.AddRequestIdentifier;
 import com.example.homebootcamp.annotations.PersistIncomingRequest;
 import com.example.homebootcamp.annotations.PersistResponse;
 import com.example.homebootcamp.interfaces.BaseController;
@@ -19,6 +20,7 @@ import java.util.Map;
 public class SimpleController implements BaseController {
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
+    @AddRequestIdentifier
     @PersistIncomingRequest
     @PersistResponse
     public ResponseEntity putRequest(@RequestHeader Map headers,

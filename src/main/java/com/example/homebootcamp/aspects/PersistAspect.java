@@ -13,6 +13,8 @@ import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
+import static com.example.homebootcamp.constants.RequestConstants.REQUEST_IDENTIFIER;
+
 @Component
 @Aspect
 public class PersistAspect {
@@ -31,7 +33,7 @@ public class PersistAspect {
 
     @Before("beforeIncomingRequest(persistIncomingRequest) && args(@RequestHeader headers, @RequestBody requestBody)")
     public void persistIncomingRequest(PersistIncomingRequest persistIncomingRequest, Map headers, JSONObject requestBody){
-        String requestIdentifier = UUID.randomUUID().toString();
+        String requestIdentifier = (String) headers.get(REQUEST_IDENTIFIER);
         Date date = new Date();
         incomingRequestLogRepository.save(new IncomingRequest(headers, requestBody.toMap(), date, requestIdentifier));
     }
