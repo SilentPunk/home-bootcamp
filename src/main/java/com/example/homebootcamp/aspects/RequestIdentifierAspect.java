@@ -22,7 +22,7 @@ public class RequestIdentifierAspect {
     public void addRequestIdentifierPointcut(AddRequestIdentifier addRequestIdentifier){};
 
     @Before("addRequestIdentifierPointcut(addRequestIdentifier) && args(@RequestHeader headers, ..)")
-    public void addRequestIdentifierToRequestHeaders(AddRequestIdentifier addRequestIdentifier, Map headers){
+    public void addRequestIdentifierToRequestHeaders(AddRequestIdentifier addRequestIdentifier, Map<String, String> headers){
         String identifier = UUID.randomUUID().toString();
         headers.put(REQUEST_IDENTIFIER, identifier);
     }
